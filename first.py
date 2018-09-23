@@ -7,9 +7,9 @@ import psutil
 #
 
 print("Hello world")
-#name = input("Your name: ")
+name = input("Your name: ")
 
-#print(name, ", welcome to Python!")
+print(name, ", welcome to Python!")
 
 answer = input("Хочешь поработать? (Y/N)")
 
