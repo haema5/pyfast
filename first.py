@@ -17,28 +17,20 @@ if answer == 'Y':
     print("Отлично, хозяин!")
     print("Я умею:")
     print("  1 - вывести список файлов")
-    print("  2 - имя текущей директории")
+    print("  2 - вывести информацию о системе")
     print("  3 - вывести список процессов")
-    print("  4 - платформа (ОС)")
-    print("  5 - кодировка")
-    print("  6 - логин")
-    print("  7 - количество ЦПУ")
     do = int(input("Что сделать? "))
 
     if do == 1:
         print(os.listdir())
     elif do == 2:
-        print(os.getcwd())
+        print("Текущая директория: ", os.getcwd())
+        print("Текущая платформа: ", sys.platform)
+        print("Текущая кодировка ФС: ", sys.getfilesystemencoding())
+        print("Текущий пользователь: ", os.getlogin())
+        print("Количество процессоров: ", psutil.cpu_count())
     elif do == 3:
         print(psutil.pids())
-    elif do == 4:
-        print(sys.platform)
-    elif do == 5:
-        print(sys.getfilesystemencoding())
-    elif do == 6:
-        print(os.getlogin())
-    elif do == 7:
-        print(psutil.cpu_count())
     else:
         print("I don't know...")
 
