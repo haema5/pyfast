@@ -37,7 +37,7 @@ while answer != 'q':
             print("Дублируем файлы")
             file_list = os.listdir()
             print(os.listdir())
-
+#duplicate all files
             i = 0
             while i < len(file_list):
                 newfile = file_list[i] + '.dupl'
@@ -46,7 +46,7 @@ while answer != 'q':
         else:
             pass
 
-#
+
     elif answer == 'n':
         print("Goodbye!")
     else:
