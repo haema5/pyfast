@@ -1,4 +1,4 @@
-# coding: utf-8
+﻿# coding: utf-8
 
 import os
 import sys
@@ -35,6 +35,6 @@ if answer == 'Y':
         print("I don't know...")
 
 elif answer == 'N':
-    print("Goodbye!")
+    print("Goodbye!!!!")
 else:
     print("I don't know...")
