@@ -38,11 +38,15 @@ while answer != 'q':
             file_list = os.listdir()
             print(os.listdir())
 #duplicate all files
+            print(file_list)
             i = 0
             while i < len(file_list):
-                newfile = file_list[i] + '_dupl'
-                shutil.copy(file_list[i], newfile)
-                i += i
+                print(file_list[i])
+                if os.path.isfile(file_list[i]):
+                    if file_list[i] != '.git':
+                        newfile = 'dupl_' + file_list[i]
+                        shutil.copy(file_list[i], newfile)
+                i += 1
         else:
             pass
 
