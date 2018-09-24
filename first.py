@@ -40,7 +40,7 @@ while answer != 'q':
 #duplicate all files
             i = 0
             while i < len(file_list):
-                newfile = file_list[i] + '.dupl'
+                newfile = file_list[i] + '_dupl'
                 shutil.copy(file_list[i], newfile)
                 i += i
         else:
