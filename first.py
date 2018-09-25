@@ -7,24 +7,25 @@ import psutil
 
 #
 
-print("Hello world")
-name = input("Your name: ")
+print("Привет!")
+name = input("Как тебя зовут?: ")
 
-print(name, ", welcome to Python!")
+print(name, ", рад познакомиться с тобой!")
 
 answer = ''
 while answer != 'q':
-    answer = input("Хочешь поработать? (y/n/q)")
+    answer = input("Хочешь поработать? (y-Да/n-Нет/q-Выйти) ")
     if answer == 'y':
-        print("Отлично, хозяин!")
-        print("Я умею:")
+        print("Отлично!")
+        print("Я умею делать следующие вещи:")
         print("  1 - вывести список файлов")
         print("  2 - вывести информацию о системе")
         print("  3 - вывести список процессов")
-        print("  4 - продублировать файлы")
+        print("  4 - продублировать все файлы в дирректории " + os.getcwd())
         print("  5 - дублировать определенный файл")
         print("  6 - удалить файлы .dupl")
-        do = int(input("Что сделать? "))
+        print('')
+        do = int(input("Чем могу помочь? "))
         if do == 1:
             print(os.listdir())
         elif do == 2:
@@ -36,10 +37,9 @@ while answer != 'q':
         elif do == 3:
             print(psutil.pids())
         elif do == 4:
-            print("Дублируем файлы")
+            print("Дублируем файлы ")
             file_list = os.listdir()
             print(os.listdir())
-            # duplicate all files
             print(file_list)
             i = 0
             while i < len(file_list):
@@ -51,7 +51,7 @@ while answer != 'q':
                 i += 1
         elif do == 5:
             print(os.listdir())
-            file_name = input("Какой файл дублировать?")
+            file_name = input("Какой файл дублировать? ")
             if os.path.isfile(file_name):
                 newfile = file_name + '.dupl'
                 shutil.copy(file_name, newfile)
@@ -61,16 +61,15 @@ while answer != 'q':
             print(file_list)
             i = 0
             while i < len(file_list):
-                longname = os.path.join(dir_name, file_list[i])
-                if longname.endswith('.dupl'):
-                    print('Удаляю: ' + longname)
-                    os.remove(longname)
+                long_name = os.path.join(dir_name, file_list[i])
+                if long_name.endswith('.dupl'):
+                    print('Удаляю: ' + long_name)
+                    os.remove(long_name)
                 i += 1
             print('Все файлы .dupl в директории ' + dir_name + ' удалены!')
         else:
             pass
-
     elif answer == 'n':
-        print("Goodbye!")
+        print("Очень жалко, но я хочу поработать! Жми <y>")
     else:
-        print("I don't know...")
+        print("Я не понимаю тебя...")
