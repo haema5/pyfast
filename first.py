@@ -37,14 +37,28 @@ while answer != 'q':
             print("Дублируем файлы")
             file_list = os.listdir()
             print(os.listdir())
-#duplicate all files
+            # duplicate all files
             print(file_list)
             i = 0
             while i < len(file_list):
                 print(file_list[i])
                 if os.path.isfile(file_list[i]):
                     if file_list[i] != '.git':
-                        newfile = 'dupl_' + file_list[i]
+                        newfile = file_list[i] + '.dupl'
+                        shutil.copy(file_list[i], newfile)
+                i += 1
+        elif do == 4:
+            print("Дублируем файлы")
+            file_list = os.listdir()
+            print(os.listdir())
+            # duplicate all files
+            print(file_list)
+            i = 0
+            while i < len(file_list):
+                print(file_list[i])
+                if os.path.isfile(file_list[i]):
+                    if file_list[i] != '.git':
+                        newfile = file_list[i] + '.dupl'
                         shutil.copy(file_list[i], newfile)
                 i += 1
         else:
