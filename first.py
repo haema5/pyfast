@@ -5,6 +5,37 @@ import sys
 import shutil
 import psutil
 
+
+def dupl_file(filename):
+    newfile = filename + '.dupl'
+    shutil.copy(filename, newfile)
+    if os.path.exists(newfile):
+        print("Файл ", newfile, " был успешно создан")
+        return True
+    else:
+        print("Ошибка! ", newfile, " не был создан")
+        return False
+
+
+def del_file(dir_name):
+    x = 0
+    file_list = os.listdir(dir_name)
+    for f in file_list:
+        long_name = os.path.join(dir_name, f)
+        if long_name.endswith('.dupl'):
+            os.remove(long_name)
+            x += 1
+    return str(x)
+
+
+def sys_info():
+    print("Текущая директория: ", os.getcwd())
+    print("Текущая платформа: ", sys.platform)
+    print("Текущая кодировка ФС: ", sys.getfilesystemencoding())
+    print("Текущий пользователь: ", os.getlogin())
+    print("Количество процессоров: ", psutil.cpu_count())
+
+
 #
 
 print("Привет!")
@@ -29,44 +60,27 @@ while answer != 'q':
         if do == 1:
             print(os.listdir())
         elif do == 2:
-            print("Текущая директория: ", os.getcwd())
-            print("Текущая платформа: ", sys.platform)
-            print("Текущая кодировка ФС: ", sys.getfilesystemencoding())
-            print("Текущий пользователь: ", os.getlogin())
-            print("Количество процессоров: ", psutil.cpu_count())
+            sys_info()
         elif do == 3:
             print(psutil.pids())
         elif do == 4:
-            print("Дублируем файлы ")
+            print("Дублируем файлы...")
             file_list = os.listdir()
-            print(os.listdir())
-            print(file_list)
             i = 0
             while i < len(file_list):
-                print(file_list[i])
                 if os.path.isfile(file_list[i]):
                     if file_list[i] != '.git':
-                        newfile = file_list[i] + '.dupl'
-                        shutil.copy(file_list[i], newfile)
+                        dupl_file(file_list[i])
                 i += 1
         elif do == 5:
-            print(os.listdir())
-            file_name = input("Какой файл дублировать? ")
-            if os.path.isfile(file_name):
-                newfile = file_name + '.dupl'
-                shutil.copy(file_name, newfile)
+            filename = input("Какой файл дублировать? ")
+            if os.path.isfile(filename):
+                dupl_file(filename)
+
         elif do == 6:
-            dir_name = input('Укажите имя директории: ')
-            file_list = os.listdir(dir_name)
-            print(file_list)
-            i = 0
-            while i < len(file_list):
-                long_name = os.path.join(dir_name, file_list[i])
-                if long_name.endswith('.dupl'):
-                    print('Удаляю: ' + long_name)
-                    os.remove(long_name)
-                i += 1
-            print('Все файлы .dupl в директории ' + dir_name + ' удалены!')
+            dirname = input('Укажите имя директории: ')
+            print(del_file(dirname) + ' файла(ов) удален(о) в директории <' + os.path.abspath(dirname) + '\>!')
+
         else:
             pass
     elif answer == 'n':
