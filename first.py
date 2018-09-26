@@ -24,7 +24,9 @@ def del_file(dir_name):
         long_name = os.path.join(dir_name, f)
         if long_name.endswith('.dupl'):
             os.remove(long_name)
-            x += 1
+            if not os.path.exists(long_name):
+                print('Файл ' + f + ' был удален!')
+                x += 1
     return str(x)
 
 
